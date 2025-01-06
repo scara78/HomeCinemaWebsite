@@ -12,7 +12,13 @@ export default function Home() {
             Watch Movies <br /> In Your Home
           </h1>
           <div className="flex gap-5 mt-16">
-            <Button>Watch</Button>
+            <Button
+              onClick={() => {
+                location.href = "/watch";
+              }}
+            >
+              Watch
+            </Button>
             <Button className="!bg-transparent border-4 text-white border-white">
               Search
             </Button>

@@ -37,7 +37,10 @@ export default function NavBar() {
             </a>
           )}
           <div className="flex justify-center xl:gap-32 gap-16 items-center">
-            <a href="" className="font-bold text-lg lg:block hidden xl:text-xl">
+            <a
+              href="/watch"
+              className="font-bold text-lg lg:block hidden xl:text-xl"
+            >
               Watch
             </a>
             <div className="md:block hidden">

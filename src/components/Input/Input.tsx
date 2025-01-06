@@ -1,6 +1,5 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef } from "react";
 
 interface InputProps
   extends React.DetailedHTMLProps<

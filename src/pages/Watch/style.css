@@ -1,0 +1,17 @@
+.horz-list {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: thin; /* Firefox: Thin scrollbar */
+  scrollbar-color: #888 #f0f0f0; /* Firefox: Thumb and track colors */
+  scroll-behavior: smooth;
+}
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
