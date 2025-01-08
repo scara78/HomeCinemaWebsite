@@ -15,3 +15,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.loading-background {
+  background: linear-gradient(90deg, #5c5c5c 25%, #707070 50%, #5d5d5d 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

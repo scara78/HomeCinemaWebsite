@@ -38,6 +38,7 @@ export function useGetYTSList(queries?: string[][]) {
         url.searchParams.set(q[0], q[1]);
       }
     }
+    console.log(url.href);
     getList(url.href)
       .catch((e) => {
         if (typeof e.err === "string") {

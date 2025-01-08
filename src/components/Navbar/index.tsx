@@ -17,7 +17,7 @@ export default function NavBar() {
   }, [openS]);
   return (
     <>
-      <div className="w-full h-[100px] mt-10">
+      <div className="w-full mt-10">
         <div
           className={
             "flex justify-between ps-16 pr-16 sm:ps-32 sm:pr-32 " +
