@@ -2,30 +2,34 @@ import { useGetYTSList } from "../../hooks/getYTSList";
 import Movie from "../../components/Movie/Movie";
 import NavBar from "../../components/Navbar";
 import "./style.css";
-import List, { MoviesListCategory } from "../../components/List";
+import { MoviesListCategory } from "../../components/List";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function Watch() {
-  const { resp, err, isLoading } = useGetYTSList([["sort_by", "like_count"]]);
+  const { resp, err, isLoading } = useGetYTSList({
+    queries: [["sort_by", "like_count"]],
+  });
   const {
     resp: respNew,
     err: errNew,
     isLoading: isLoadingNew,
-  } = useGetYTSList([["sort_by", "date_added"]]);
+  } = useGetYTSList({ queries: [["sort_by", "date_added"]] });
   const {
     resp: respAction,
     err: errAction,
     isLoading: isLoadingAction,
-  } = useGetYTSList([
-    ["genre", "Action"],
-    ["sort_by", "rating"],
-  ]);
+  } = useGetYTSList({
+    queries: [
+      ["genre", "Action"],
+      ["sort_by", "rating"],
+    ],
+  });
   const {
     resp: respAny,
     err: errAny,
     isLoading: isLoadingAny,
-  } = useGetYTSList([["sort_by", "download_count"]]);
+  } = useGetYTSList({ queries: [["sort_by", "download_count"]] });
   return (
     <>
       <NavBar />
@@ -56,11 +60,11 @@ export default function Watch() {
         listID="action"
         category="Action"
       />
-      <div className="md:ps-28 md:pe-28 ps-10 pr-10">
+      <div className="md:ps-28 md:pe-28 ps-2">
         <h1 className="font-extrabold text-xl md:text-4xl mb-10 md:mb-20 mt-7 md:mt-20">
           Movies you may like
         </h1>
-        <div className="flex flex-wrap justify-center gap-16 lg:mt-20 ">
+        <div className="flex flex-wrap justify-center gap-7 md:gap-16 lg:mt-20 ">
           {!isLoadingAny && !errAny && (
             <>
               {respAny?.map((m, i) => {

@@ -3,18 +3,31 @@ import { useEffect, useState } from "react";
 
 const listEndPoint = " https://yts.mx/api/v2/list_movies.json";
 
-export function useGetYTSList(queries?: string[][]) {
+interface GetYTSListProps {
+  queries?: string[][];
+  fetchWhenCall?: boolean;
+}
+
+export function useGetYTSList(props: GetYTSListProps) {
+  if (props.fetchWhenCall === undefined) {
+    props.fetchWhenCall = true;
+  }
   const [resp, setResp] = useState<MovieMetaData[]>();
   const [err, setErr] = useState<string>();
   const [isLoading, setIsLoading] = useState(true);
   const getList = async (url: string) => {
     const resp = await axios.get(url);
-    if (resp.status == 200 || resp.data.status === "ok") {
+    if (resp.status == 200 && resp.data.status === "ok") {
+      if (resp.data.data.movie_count == 0) {
+        setErr("movie not found :(");
+        return;
+      }
       let movies: MovieMetaData[] = resp.data.data.movies;
       setResp([]);
       for (let m of movies) {
         setResp((p): MovieMetaData[] => {
           const n: MovieMetaData = {
+            id: m.id,
             title: m.title,
             year: m.year,
             rating: m.rating,
@@ -31,14 +44,13 @@ export function useGetYTSList(queries?: string[][]) {
       setErr(resp.data.error);
     }
   };
-  useEffect(() => {
+  const fetch = (queries?: string[][]) => {
     const url = new URL(listEndPoint);
     if (queries) {
       for (let q of queries) {
         url.searchParams.set(q[0], q[1]);
       }
     }
-    console.log(url.href);
     getList(url.href)
       .catch((e) => {
         if (typeof e.err === "string") {
@@ -50,6 +62,11 @@ export function useGetYTSList(queries?: string[][]) {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
-  return { resp, isLoading, err };
+  };
+  if (props.fetchWhenCall) {
+    useEffect(() => {
+      fetch(props.queries);
+    }, []);
+  }
+  return { resp, isLoading, err, fetch };
 }

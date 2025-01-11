@@ -12,6 +12,9 @@ export default function Movie({
     <>
       {!loading && m && (
         <div
+          onClick={() => {
+            location.href = "/watch/" + m.id;
+          }}
           className="lg:w-[230px] w-[115px] h-[172px] relative lg:h-[345px] shrink-0 cursor-pointer"
           style={{
             backgroundImage: `url("${m.medium_cover_image}")`,
