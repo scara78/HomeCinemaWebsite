@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const api: string = "http://192.168.1.100:8080/";
+export const api: string = "http://localhost:8080/";
 
 export const streamEndPoint = "/api/stream";
 const magnetURIEndpoint = "/api/get_magnet_uri";

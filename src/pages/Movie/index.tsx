@@ -6,7 +6,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function MoviePage() {
   const params = useParams();
-  const { resp, err, isLoading } = useGetYTSMovieDetails(params.id as string);
+  const { resp, isLoading } = useGetYTSMovieDetails(params.id as string);
 
   return (
     <>
