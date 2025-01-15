@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       // Target is your backend API
       "/api/get_magnet_uri": {
-        target: "http://localhost:8080",
+        target: "https://cscara.onrender.com",
         changeOrigin: true,
       },
     },
